@@ -58,10 +58,53 @@ class RestaurantTableViewController: UITableViewController {
         return cell
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // pulsante cancella
+        let optionMenu = UIAlertController(title: nil, message: "Cosa vuoi fare", preferredStyle: .ActionSheet)
+        let alertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        optionMenu.addAction(alertAction)
+        self.presentViewController(optionMenu, animated: true, completion: nil)
 
+        
+        //Pulsante chiama
+
+        let callActionHandler = {(action:UIAlertAction!)-> Void in
+            let alertMessage = UIAlertController(title: "Servizio non disponibile", message: "Il servizio di chiamata non è ancora disponibile", preferredStyle: .Alert)
+            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            alertMessage.addAction(UIAlertAction(title: "Annulla", style: .Cancel, handler: nil))
+            
+            self.presentViewController(alertMessage, animated: true, completion: nil)
+        }
+        
+        let callAction = UIAlertAction(title: "Call 333 4232\(indexPath.row)", style: .Default, handler: callActionHandler)
+        optionMenu.addAction(callAction)
+
+        //pulsante condividi
+        
+        let shareActionHandler = {(action: UIAlertAction!) -> Void in
+            let alertMessage = UIAlertController(title: "Spiacenti", message: "Il servizio di condivisione non è ancora attivo", preferredStyle: .Alert)
+            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertMessage, animated: true, completion: nil)
+        }
+        
+        let shareAction = UIAlertAction(title: "Condividi sui social", style: .Default, handler: shareActionHandler)
+        optionMenu.addAction(shareAction)
+
+        
+        // sono stato qui
+        
+        let sonoStatoQui = UIAlertAction(title: "Sono già stato qui", style: .Default, handler: {(action:UIAlertAction!) -> Void in
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.accessoryType = .Checkmark
+            })
+        
+        optionMenu.addAction(sonoStatoQui)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
