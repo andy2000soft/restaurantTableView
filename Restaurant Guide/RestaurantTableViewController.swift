@@ -11,10 +11,10 @@ import UIKit
 class RestaurantTableViewController: UITableViewController {
     
     
-    var restaurantNames = ["Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany"]
-    var restaurantLocations = ["Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini"]
-    var restaurantTypes = ["Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica"]
-    var restaurantImages = ["restaurant","imgres-1","imgres-2","imgres-4","imgres-5"]
+    var restaurantNames = ["Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany","Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany","Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany"]
+    var restaurantLocations = ["Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini","Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini","Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini"]
+    var restaurantTypes = ["Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica","Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica","Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica"]
+    var restaurantImages = ["restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
