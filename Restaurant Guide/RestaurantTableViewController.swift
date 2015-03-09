@@ -15,6 +15,8 @@ class RestaurantTableViewController: UITableViewController {
     var restaurantLocations = ["Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini","Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini","Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini"]
     var restaurantTypes = ["Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica","Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica","Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica"]
     var restaurantImages = ["restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5"]
+    
+    var isVisited = [Bool](count: 15, repeatedValue: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,7 @@ class RestaurantTableViewController: UITableViewController {
         cell.locationLabel.text = restaurantLocations[indexPath.row]
         cell.typeLabel.text = restaurantTypes[indexPath.row]
         cell.imageThumbnail.image = UIImage(named:restaurantImages[indexPath.row])
+        cell.accessoryType = self.isVisited[indexPath.row] ? .Checkmark : .None
         
         return cell
     }
@@ -61,11 +64,12 @@ class RestaurantTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // pulsante cancella
         let optionMenu = UIAlertController(title: nil, message: "Cosa vuoi fare", preferredStyle: .ActionSheet)
+        
+        // pulsante cancella
+
         let alertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         optionMenu.addAction(alertAction)
-        self.presentViewController(optionMenu, animated: true, completion: nil)
 
         
         //Pulsante chiama
@@ -98,10 +102,12 @@ class RestaurantTableViewController: UITableViewController {
         let sonoStatoQui = UIAlertAction(title: "Sono già stato qui", style: .Default, handler: {(action:UIAlertAction!) -> Void in
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.accessoryType = .Checkmark
+            self.isVisited[indexPath.row] = true
             })
         
         optionMenu.addAction(sonoStatoQui)
         
+        self.presentViewController(optionMenu, animated: true, completion: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
     }
