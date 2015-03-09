@@ -98,11 +98,16 @@ class RestaurantTableViewController: UITableViewController {
 
         
         // sono stato qui
-        
-        let sonoStatoQui = UIAlertAction(title: "Sono già stato qui", style: .Default, handler: {(action:UIAlertAction!) -> Void in
+        let messaggioVisited = isVisited[indexPath.row] ?  "Rimuovi dai visitati" :"Segna come già visitato"
+        let sonoStatoQui = UIAlertAction(title: messaggioVisited, style: .Default, handler: {(action:UIAlertAction!) -> Void in
             let cell = tableView.cellForRowAtIndexPath(indexPath)
+            if !self.isVisited[indexPath.row]{
             cell?.accessoryType = .Checkmark
-            self.isVisited[indexPath.row] = true
+                self.isVisited[indexPath.row] = true
+            }else{
+                cell?.accessoryType = .None
+                self.isVisited[indexPath.row] = false
+            }
             })
         
         optionMenu.addAction(sonoStatoQui)
