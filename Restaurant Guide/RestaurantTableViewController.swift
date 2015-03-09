@@ -56,6 +56,8 @@ class RestaurantTableViewController: UITableViewController {
         cell.locationLabel.text = restaurantLocations[indexPath.row]
         cell.typeLabel.text = restaurantTypes[indexPath.row]
         cell.imageThumbnail.image = UIImage(named:restaurantImages[indexPath.row])
+        cell.imageThumbnail.layer.cornerRadius = cell.imageThumbnail.frame.size.width / 2
+        cell.imageThumbnail.clipsToBounds = true
         cell.accessoryType = self.isVisited[indexPath.row] ? .Checkmark : .None
         
         return cell
@@ -115,6 +117,18 @@ class RestaurantTableViewController: UITableViewController {
         self.presentViewController(optionMenu, animated: true, completion: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete{
+            self.restaurantNames.removeAtIndex(indexPath.row)
+            self.restaurantImages.removeAtIndex(indexPath.row)
+            self.restaurantLocations.removeAtIndex(indexPath.row)
+            self.restaurantTypes.removeAtIndex(indexPath.row)
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        
     }
     /*
     // Override to support conditional editing of the table view.
