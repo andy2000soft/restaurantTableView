@@ -120,7 +120,7 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
+        // elimina cella e dati
         if editingStyle == .Delete{
             self.restaurantNames.removeAtIndex(indexPath.row)
             self.restaurantImages.removeAtIndex(indexPath.row)
@@ -129,7 +129,23 @@ class RestaurantTableViewController: UITableViewController {
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         
+        
+        
     }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        
+        var shareAction = UITableViewRowAction(style: .Default, title: "Condividi", handler: {(action:UITableViewRowAction!, indexPath:NSIndexPath!)->Void in
+            let shareMenu = UIAlertController(title: nil, message: "Condividi su", preferredStyle: .ActionSheet)
+            let twitterAction = UIAlertAction(title: "Twitter", style: .Default, handler: nil)
+            let facebookAction = UIAlertAction(title: "Facebook", style: .Default, handler: nil)
+            
+            shareMenu.addAction(twitterAction)
+            shareMenu.addAction(facebookAction)
+            self.presentViewController(shareMenu, animated: true, completion: nil)
+            
+            
+    })
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
