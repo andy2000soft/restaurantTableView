@@ -85,10 +85,10 @@
 				CD27DB571AAC74BA00D8747D /* Main.storyboard */,
 				CD27DB731AAC88DE00D8747D /* RestaurantTableViewController.swift */,
 				CD27DB751AAC97FB00D8747D /* CustomTableViewCell.swift */,
+				CDCF0BBD1AB06296002C5362 /* DetailViewController.swift */,
 				CD27DB5A1AAC74BA00D8747D /* Images.xcassets */,
 				CD27DB5C1AAC74BA00D8747D /* LaunchScreen.xib */,
 				CD27DB511AAC74BA00D8747D /* Supporting Files */,
-				CDCF0BBD1AB06296002C5362 /* DetailViewController.swift */,
 			);
 			path = "Restaurant Guide";
 			sourceTree = "<group>";

@@ -12,12 +12,17 @@ class DetailViewController: UIViewController {
     
     
     @IBOutlet weak var restaurantImageView: UIImageView!
+    @IBOutlet weak var restaurantNameContainer: UITextField!
+    
     var restaurantImage:String!
+    var restaurantName:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.restaurantImageView.image = UIImage(named: restaurantImage)
         // Do any additional setup after loading the view.
+        
+        self.restaurantImageView.image = UIImage(named: restaurantImage)
+        self.restaurantNameContainer.text = restaurantName.uppercaseString
     }
     
     override func didReceiveMemoryWarning() {

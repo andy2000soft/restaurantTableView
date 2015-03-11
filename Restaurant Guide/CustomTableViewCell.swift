@@ -14,11 +14,15 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel:UILabel!
     @IBOutlet weak var typeLabel:UILabel!
     @IBOutlet weak var imageThumbnail:UIImageView!
+    @IBOutlet weak var preferredIconImageView: UIImageView!
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        preferredIconImageView.image = UIImage(named: "Heart.png")
+        preferredIconImageView.hidden = false
+
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
