@@ -14,6 +14,7 @@
 		CD27DB6A1AAC74BA00D8747D /* Restaurant_GuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27DB691AAC74BA00D8747D /* Restaurant_GuideTests.swift */; };
 		CD27DB741AAC88DE00D8747D /* RestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27DB731AAC88DE00D8747D /* RestaurantTableViewController.swift */; };
 		CD27DB761AAC97FB00D8747D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27DB751AAC97FB00D8747D /* CustomTableViewCell.swift */; };
+		CDCF0BBE1AB06296002C5362 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0BBD1AB06296002C5362 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		CD27DB691AAC74BA00D8747D /* Restaurant_GuideTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant_GuideTests.swift; sourceTree = "<group>"; };
 		CD27DB731AAC88DE00D8747D /* RestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewController.swift; sourceTree = "<group>"; };
 		CD27DB751AAC97FB00D8747D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		CDCF0BBD1AB06296002C5362 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				CD27DB5A1AAC74BA00D8747D /* Images.xcassets */,
 				CD27DB5C1AAC74BA00D8747D /* LaunchScreen.xib */,
 				CD27DB511AAC74BA00D8747D /* Supporting Files */,
+				CDCF0BBD1AB06296002C5362 /* DetailViewController.swift */,
 			);
 			path = "Restaurant Guide";
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				CD27DB761AAC97FB00D8747D /* CustomTableViewCell.swift in Sources */,
 				CD27DB741AAC88DE00D8747D /* RestaurantTableViewController.swift in Sources */,
 				CD27DB541AAC74BA00D8747D /* AppDelegate.swift in Sources */,
+				CDCF0BBE1AB06296002C5362 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,37 +17,30 @@ class RestaurantTableViewController: UITableViewController {
     var restaurantImages = ["restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5"]
     
     var isVisited = [Bool](count: 15, repeatedValue: false)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        
+        
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return restaurantNames.count
     }
-
-  
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "Cell"
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as CustomTableViewCell
@@ -64,72 +57,70 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let optionMenu = UIAlertController(title: nil, message: "Cosa vuoi fare", preferredStyle: .ActionSheet)
-        
-        // pulsante cancella
-
-        let alertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        optionMenu.addAction(alertAction)
-
-        
-        //Pulsante chiama
-
-        let callActionHandler = {(action:UIAlertAction!)-> Void in
-            let alertMessage = UIAlertController(title: "Servizio non disponibile", message: "Il servizio di chiamata non è ancora disponibile", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            alertMessage.addAction(UIAlertAction(title: "Annulla", style: .Cancel, handler: nil))
-            
-            self.presentViewController(alertMessage, animated: true, completion: nil)
-        }
-        
-        let callAction = UIAlertAction(title: "Call 333 4232\(indexPath.row)", style: .Default, handler: callActionHandler)
-        optionMenu.addAction(callAction)
-
-        //pulsante condividi
-        
-        let shareActionHandler = {(action: UIAlertAction!) -> Void in
-            let alertMessage = UIAlertController(title: "Spiacenti", message: "Il servizio di condivisione non è ancora attivo", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertMessage, animated: true, completion: nil)
-        }
-        
-        let shareAction = UIAlertAction(title: "Condividi sui social", style: .Default, handler: shareActionHandler)
-        optionMenu.addAction(shareAction)
-
-        
-        // sono stato qui
-        let messaggioVisited = isVisited[indexPath.row] ?  "Rimuovi dai visitati" :"Segna come già visitato"
-        let sonoStatoQui = UIAlertAction(title: messaggioVisited, style: .Default, handler: {(action:UIAlertAction!) -> Void in
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            if !self.isVisited[indexPath.row]{
-            cell?.accessoryType = .Checkmark
-                self.isVisited[indexPath.row] = true
-            }else{
-                cell?.accessoryType = .None
-                self.isVisited[indexPath.row] = false
-            }
-            })
-        
-        optionMenu.addAction(sonoStatoQui)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
+    /* override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    let optionMenu = UIAlertController(title: nil, message: "Cosa vuoi fare", preferredStyle: .ActionSheet)
+    
+    // pulsante cancella
+    
+    let alertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    optionMenu.addAction(alertAction)
+    
+    
+    //Pulsante chiama
+    
+    let callActionHandler = {(action:UIAlertAction!)-> Void in
+    let alertMessage = UIAlertController(title: "Servizio non disponibile", message: "Il servizio di chiamata non è ancora disponibile", preferredStyle: .Alert)
+    alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+    alertMessage.addAction(UIAlertAction(title: "Annulla", style: .Cancel, handler: nil))
+    
+    self.presentViewController(alertMessage, animated: true, completion: nil)
     }
+    
+    let callAction = UIAlertAction(title: "Call 333 4232\(indexPath.row)", style: .Default, handler: callActionHandler)
+    optionMenu.addAction(callAction)
+    
+    //pulsante condividi
+    
+    let shareActionHandler = {(action: UIAlertAction!) -> Void in
+    let alertMessage = UIAlertController(title: "Spiacenti", message: "Il servizio di condivisione non è ancora attivo", preferredStyle: .Alert)
+    alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+    self.presentViewController(alertMessage, animated: true, completion: nil)
+    }
+    
+    let shareAction = UIAlertAction(title: "Condividi sui social", style: .Default, handler: shareActionHandler)
+    optionMenu.addAction(shareAction)
+    
+    
+    // sono stato qui
+    let messaggioVisited = isVisited[indexPath.row] ?  "Rimuovi dai visitati" :"Segna come già visitato"
+    let sonoStatoQui = UIAlertAction(title: messaggioVisited, style: .Default, handler: {(action:UIAlertAction!) -> Void in
+    let cell = tableView.cellForRowAtIndexPath(indexPath)
+    if !self.isVisited[indexPath.row]{
+    cell?.accessoryType = .Checkmark
+    self.isVisited[indexPath.row] = true
+    }else{
+    cell?.accessoryType = .None
+    self.isVisited[indexPath.row] = false
+    }
+    })
+    
+    optionMenu.addAction(sonoStatoQui)
+    
+    self.presentViewController(optionMenu, animated: true, completion: nil)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+    }*/
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         // elimina cella e dati
-        if editingStyle == .Delete{
-            self.restaurantNames.removeAtIndex(indexPath.row)
-            self.restaurantImages.removeAtIndex(indexPath.row)
-            self.restaurantLocations.removeAtIndex(indexPath.row)
-            self.restaurantTypes.removeAtIndex(indexPath.row)
+        /* if editingStyle == .Delete{
+        self.restaurantNames.removeAtIndex(indexPath.row)
+        self.restaurantImages.removeAtIndex(indexPath.row)
+        self.restaurantLocations.removeAtIndex(indexPath.row)
+        self.restaurantTypes.removeAtIndex(indexPath.row)
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        }
-        
-        
+        }*/
         
     }
     
@@ -139,56 +130,83 @@ class RestaurantTableViewController: UITableViewController {
             let shareMenu = UIAlertController(title: nil, message: "Condividi su", preferredStyle: .ActionSheet)
             let twitterAction = UIAlertAction(title: "Twitter", style: .Default, handler: nil)
             let facebookAction = UIAlertAction(title: "Facebook", style: .Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Annulla", style: .Cancel, handler: nil)
             
             shareMenu.addAction(twitterAction)
             shareMenu.addAction(facebookAction)
+            shareMenu.addAction(cancelAction)
+            
             self.presentViewController(shareMenu, animated: true, completion: nil)
             
+            }
+        )
+        
+        var deleteAction = UITableViewRowAction(style: .Default, title: "Elimina", handler:{(action:UITableViewRowAction!,indexPath: NSIndexPath!) -> Void in
             
-    })
+            self.restaurantNames.removeAtIndex(indexPath.row)
+            self.restaurantImages.removeAtIndex(indexPath.row)
+            self.restaurantLocations.removeAtIndex(indexPath.row)
+            self.restaurantTypes.removeAtIndex(indexPath.row)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            }
+        )
+        shareAction.backgroundColor = UIColor.blueColor()
+        return [shareAction,deleteAction]
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showRestaurantDetail"{
+            if let indexPath = tableView.indexPathForSelectedRow(){
+                let destinationController = segue.destinationViewController as DetailViewController
+                destinationController.restaurantImage = self.restaurantImages[indexPath.row]
+            }
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    // Return NO if you do not want the specified item to be editable.
+    return true
     }
     */
-
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    if editingStyle == .Delete {
+    // Delete the row from the data source
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    } else if editingStyle == .Insert {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
     }
     */
-
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
     }
     */
-
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
+    // Return NO if you do not want the item to be re-orderable.
+    return true
     }
     */
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
