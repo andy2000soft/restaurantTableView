@@ -10,13 +10,13 @@ import UIKit
 
 class RestaurantTableViewController: UITableViewController {
     
-    
-    var restaurantNames = ["Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany","Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany","Diego","la rondine","Pizza & Go", "Pizzeria da mimmo", "Tiffany"]
-    var restaurantLocations = ["Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini","Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini","Piazza Europa","Via Aldo Moro", "corso Roma", "Piazza Padre Pio", "Viale Cappuccini"]
-    var restaurantTypes = ["Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica","Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica","Pizza al Taglio", "Pizza al piatto","ristorante Cinese", "cucina tipica", "cucina etnica"]
-    var restaurantImages = ["restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5","restaurant","imgres-1","imgres-2","imgres-4","imgres-5"]
-    
-    var isVisited = [Bool](count: 15, repeatedValue: false)
+    var restaurants:[Restaurant] = [
+    Restaurant(name: "Diego", type: "Pizza al taglio", location: "Piazza Europa", image: "restaurant", isVisited: false),
+    Restaurant(name: "La rondine", type: "Pizza al piatto", location: "Viale Aldo Moro", image: "imgres-1", isVisited: false),
+    Restaurant(name: "Pizza & Go", type: "Da asporto", location: "Via Foggia, 34", image: "imgres-2", isVisited: false),
+    Restaurant (name: "Da Mimmo", type: "pub", location: "Corso Matteotti", image: "imgres-4", isVisited: false),
+    Restaurant(name: "Tiffany", type: "Bar aperitivo", location: "Viale Cappuccini", image: "imgres-5", isVisited: false)
+    ]
     
     
     override func viewDidLoad() {
@@ -38,21 +38,21 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurantNames.count
+        return restaurants.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "Cell"
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as CustomTableViewCell
-        
-        cell.nameLabel.text = restaurantNames[indexPath.row]
-        cell.locationLabel.text = restaurantLocations[indexPath.row]
-        cell.typeLabel.text = restaurantTypes[indexPath.row]
-        cell.imageThumbnail.image = UIImage(named:restaurantImages[indexPath.row])
+        let restaurant = restaurants[indexPath.row]
+        cell.nameLabel.text = restaurant.name
+        cell.locationLabel.text = restaurant.location
+        cell.typeLabel.text = restaurant.type
+        cell.imageThumbnail.image = UIImage(named:restaurant.image)
         cell.imageThumbnail.layer.cornerRadius = cell.imageThumbnail.frame.size.width / 2
         cell.imageThumbnail.clipsToBounds = true
-        cell.preferredIconImageView.hidden = self.isVisited[indexPath.row] ? false : true
+        cell.preferredIconImageView.hidden = !restaurant.isVisited
         
         return cell
     }
@@ -144,10 +144,10 @@ class RestaurantTableViewController: UITableViewController {
         
         var deleteAction = UITableViewRowAction(style: .Default, title: "Elimina", handler:{(action:UITableViewRowAction!,indexPath: NSIndexPath!) -> Void in
             
-            self.restaurantNames.removeAtIndex(indexPath.row)
-            self.restaurantImages.removeAtIndex(indexPath.row)
-            self.restaurantLocations.removeAtIndex(indexPath.row)
-            self.restaurantTypes.removeAtIndex(indexPath.row)
+            self.restaurants.removeAtIndex(indexPath.row)
+            self.restaurants.removeAtIndex(indexPath.row)
+            self.restaurants.removeAtIndex(indexPath.row)
+            self.restaurants.removeAtIndex(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
             }
@@ -161,8 +161,7 @@ class RestaurantTableViewController: UITableViewController {
         if segue.identifier == "showRestaurantDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow(){
                 let destinationController = segue.destinationViewController as DetailViewController
-                destinationController.restaurantImage = self.restaurantImages[indexPath.row]
-                destinationController.restaurantName = self.restaurantNames[indexPath.row]
+                destinationController.restaurant = restaurants[indexPath.row]
                 
             }}
     }

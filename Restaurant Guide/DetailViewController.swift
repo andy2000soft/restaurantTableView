@@ -8,27 +8,54 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet weak var restaurantImageView: UIImageView!
-    @IBOutlet weak var restaurantNameContainer: UITextField!
     
-    var restaurantImage:String!
-    var restaurantName:String!
+    var restaurant:Restaurant!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.restaurantImageView.image = UIImage(named: restaurantImage)
-        self.restaurantNameContainer.text = restaurantName.uppercaseString
+        self.restaurantImageView.image = UIImage(named:restaurant.image)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as DetailTableViewCell
+        
+        switch indexPath.row {
+        case 0:
+            cell.fieldLabel.text = "Nome"
+            cell.valueLabel.text = restaurant.name
+        case 1:
+            cell.fieldLabel.text = "Tipo"
+            cell.valueLabel.text = restaurant.type
+        case 2:
+            cell.fieldLabel.text = "Indirizzo"
+            cell.valueLabel.text = restaurant.location
+        case 3:
+            cell.fieldLabel.text = "Visitato"
+            cell.valueLabel.text = (restaurant.isVisited) ? "Si, ci sono stato" : "Non ancora"
+        default:
+            cell.fieldLabel.text = ""
+            cell.valueLabel.text = ""
+        }
+        return cell
+    }
+    
+
     
     
     /*

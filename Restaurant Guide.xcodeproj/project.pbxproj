@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		079F154A1AB0E5A9000167E0 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079F15491AB0E5A8000167E0 /* Restaurant.swift */; };
+		079F154E1AB0F0C0000167E0 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079F154D1AB0F0C0000167E0 /* DetailTableViewCell.swift */; };
 		CD27DB541AAC74BA00D8747D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27DB531AAC74BA00D8747D /* AppDelegate.swift */; };
 		CD27DB591AAC74BA00D8747D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD27DB571AAC74BA00D8747D /* Main.storyboard */; };
 		CD27DB5B1AAC74BA00D8747D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD27DB5A1AAC74BA00D8747D /* Images.xcassets */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		079F15491AB0E5A8000167E0 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		079F154D1AB0F0C0000167E0 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		CD27DB4E1AAC74BA00D8747D /* Restaurant Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Restaurant Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD27DB521AAC74BA00D8747D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD27DB531AAC74BA00D8747D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				CD27DB731AAC88DE00D8747D /* RestaurantTableViewController.swift */,
 				CD27DB751AAC97FB00D8747D /* CustomTableViewCell.swift */,
 				CDCF0BBD1AB06296002C5362 /* DetailViewController.swift */,
+				079F154D1AB0F0C0000167E0 /* DetailTableViewCell.swift */,
+				079F15491AB0E5A8000167E0 /* Restaurant.swift */,
 				CD27DB5A1AAC74BA00D8747D /* Images.xcassets */,
 				CD27DB5C1AAC74BA00D8747D /* LaunchScreen.xib */,
 				CD27DB511AAC74BA00D8747D /* Supporting Files */,
@@ -218,6 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079F154E1AB0F0C0000167E0 /* DetailTableViewCell.swift in Sources */,
+				079F154A1AB0E5A9000167E0 /* Restaurant.swift in Sources */,
 				CD27DB761AAC97FB00D8747D /* CustomTableViewCell.swift in Sources */,
 				CD27DB741AAC88DE00D8747D /* RestaurantTableViewController.swift in Sources */,
 				CD27DB541AAC74BA00D8747D /* AppDelegate.swift in Sources */,
