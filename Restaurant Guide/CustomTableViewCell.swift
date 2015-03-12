@@ -15,13 +15,14 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel:UILabel!
     @IBOutlet weak var imageThumbnail:UIImageView!
     @IBOutlet weak var preferredIconImageView: UIImageView!
-
+    
+    
     
     override func awakeFromNib() {
-        super.awakeFromNib()
+        
         preferredIconImageView.image = UIImage(named: "Heart.png")
-        preferredIconImageView.hidden = false
-
+        preferredIconImageView.hidden = true
+        super.awakeFromNib()
 
     }
 

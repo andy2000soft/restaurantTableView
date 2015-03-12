@@ -173,6 +173,11 @@
 				TargetAttributes = {
 					CD27DB4D1AAC74BA00D8747D = {
 						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					CD27DB621AAC74BA00D8747D = {
 						CreatedOnToolsVersion = 6.1.1;
