@@ -15,6 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // aspetto tab bar
+        var aspettoTopBar = UINavigationBar.appearance()
+        aspettoTopBar.barTintColor = UIColor.grayColor()
+        aspettoTopBar.tintColor = UIColor.whiteColor()
+        if let font = UIFont(name: "Avenir Heavy", size: 22.0){
+            aspettoTopBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:font]}
+        
+        // aspetto button bar
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor.blueColor()
+        
+        //Setto la status bar chiara dopo aver creato una nuova chiave nella tab info delle impostazioni progetto
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+
         // Override point for customization after application launch.
         return true
     }

@@ -10,25 +10,33 @@ import UIKit
 
 class RestaurantTableViewController: UITableViewController {
     
+    @IBAction func unwindToHomeScreen(segue: UIStoryboardSegue){
+        
+    }
+    
     var restaurants:[Restaurant] = [
-    Restaurant(name: "Diego", type: "Pizza al taglio", location: "Piazza Europa", image: "restaurant", isVisited: false),
-    Restaurant(name: "La rondine", type: "Pizza al piatto", location: "Viale Aldo Moro", image: "imgres-1", isVisited: false),
-    Restaurant(name: "Pizza & Go", type: "Da asporto", location: "Via Foggia, 34", image: "imgres-2", isVisited: false),
-    Restaurant(name: "Da Mimmo", type: "pub", location: "Corso Matteotti", image: "imgres-4", isVisited: false),
-    Restaurant(name: "Tiffany", type: "Bar aperitivo", location: "Viale Cappuccini", image: "imgres-5", isVisited: false)
+        Restaurant(name: "Diego", type: "Pizza al taglio", location: "Piazza Europa, 42 - San Giovanni Rotondo - Foggia - Puglia", phone:"333 - 12345678", image: "restaurant", isVisited: false),
+    Restaurant(name: "La rondine", type: "Pizza al piatto", location: "Viale Aldo Moro, 145 - San Giovanni Rotondo", phone:"333 - 12345678", image: "imgres-1", isVisited: false),
+    Restaurant(name: "Pizza & Go", type: "Da asporto", location: "Via Foggia, 34 - San Giovanni Rotondo", phone:"333 - 12345678", image: "imgres-2", isVisited: false),
+    Restaurant(name: "Da Mimmo", type: "pub", location: "Corso Matteotti, 224 - San Giovanni Rotondo", phone:"333 - 12345678", image: "imgres-4", isVisited: false),
+    Restaurant(name: "Tiffany", type: "Bar aperitivo", location: "Viale Cappuccini, case nuove - San Giovanni Rotondo", phone:"333 - 12345678", image: "imgres-5", isVisited: false)
     ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        // bottone back senza testo
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.hidesBarsOnSwipe = true
     }
     
     // MARK: - Table view data source
@@ -52,66 +60,66 @@ class RestaurantTableViewController: UITableViewController {
         cell.imageThumbnail.image = UIImage(named:restaurant.image)
         cell.imageThumbnail.layer.cornerRadius = cell.imageThumbnail.frame.size.width / 2
         cell.imageThumbnail.clipsToBounds = true
-        cell.preferredIconImageView.hidden = !restaurant.isVisited
+       // cell.preferredIconImageView.hidden = !restaurant.isVisited
         
         return cell
     }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let optionMenu = UIAlertController(title: nil, message: "Cosa vuoi fare", preferredStyle: .ActionSheet)
-        
-        // pulsante cancella
-        
-        let alertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        optionMenu.addAction(alertAction)
-        
-        
-        //Pulsante chiama
-        
-        let callActionHandler = {(action:UIAlertAction!)-> Void in
-            let alertMessage = UIAlertController(title: "Servizio non disponibile", message: "Il servizio di chiamata non è ancora disponibile", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            alertMessage.addAction(UIAlertAction(title: "Annulla", style: .Cancel, handler: nil))
-            
-            self.presentViewController(alertMessage, animated: true, completion: nil)
-        }
-        
-        let callAction = UIAlertAction(title: "Call 333 4232\(indexPath.row)", style: .Default, handler: callActionHandler)
-        optionMenu.addAction(callAction)
-        
-        //pulsante condividi
-        
-        let shareActionHandler = {(action: UIAlertAction!) -> Void in
-            let alertMessage = UIAlertController(title: "Spiacenti", message: "Il servizio di condivisione non è ancora attivo", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertMessage, animated: true, completion: nil)
-        }
-        
-        let shareAction = UIAlertAction(title: "Condividi sui social", style: .Default, handler: shareActionHandler)
-        optionMenu.addAction(shareAction)
-        
-        
-        // sono stato qui
-        let restaurant = restaurants[indexPath.row]
-        let messaggioVisited = restaurant.isVisited ?  "Rimuovi dai visitati" :"Segna come già visitato"
-        let sonoStatoQui = UIAlertAction(title: messaggioVisited, style: .Default, handler: {(action:UIAlertAction!) -> Void in
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as CustomTableViewCell
-            if restaurant.isVisited{
-                cell.preferredIconImageView.hidden = true
-                restaurant.isVisited = false
-            }else{
-                cell.preferredIconImageView.hidden = false
-                restaurant.isVisited = true
-            }
-        })
-        
-        optionMenu.addAction(sonoStatoQui)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+//
+//        let optionMenu = UIAlertController(title: nil, message: "Cosa vuoi fare", preferredStyle: .ActionSheet)
+//        
+//        // pulsante cancella
+//        
+//        let alertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+//        optionMenu.addAction(alertAction)
+//        
+//        
+//        //Pulsante chiama
+//        
+//        let callActionHandler = {(action:UIAlertAction!)-> Void in
+//            let alertMessage = UIAlertController(title: "Servizio non disponibile", message: "Il servizio di chiamata non è ancora disponibile", preferredStyle: .Alert)
+//            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            alertMessage.addAction(UIAlertAction(title: "Annulla", style: .Cancel, handler: nil))
+//            
+//            self.presentViewController(alertMessage, animated: true, completion: nil)
+//        }
+//        
+//        let callAction = UIAlertAction(title: "Call 333 4232\(indexPath.row)", style: .Default, handler: callActionHandler)
+//        optionMenu.addAction(callAction)
+//        
+//        //pulsante condividi
+//        
+//        let shareActionHandler = {(action: UIAlertAction!) -> Void in
+//            let alertMessage = UIAlertController(title: "Spiacenti", message: "Il servizio di condivisione non è ancora attivo", preferredStyle: .Alert)
+//            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            self.presentViewController(alertMessage, animated: true, completion: nil)
+//        }
+//        
+//        let shareAction = UIAlertAction(title: "Condividi sui social", style: .Default, handler: shareActionHandler)
+//        optionMenu.addAction(shareAction)
+//        
+//        
+//        // sono stato qui
+//        let restaurant = restaurants[indexPath.row]
+//        let messaggioVisited = restaurant.isVisited ?  "Rimuovi dai visitati" :"Segna come già visitato"
+//        let sonoStatoQui = UIAlertAction(title: messaggioVisited, style: .Default, handler: {(action:UIAlertAction!) -> Void in
+//            let cell = tableView.cellForRowAtIndexPath(indexPath) as CustomTableViewCell
+//            if restaurant.isVisited{
+//                cell.preferredIconImageView.hidden = true
+//                restaurant.isVisited = false
+//            }else{
+//                cell.preferredIconImageView.hidden = false
+//                restaurant.isVisited = true
+//            }
+//        })
+//        
+//        optionMenu.addAction(sonoStatoQui)
+//        
+//        self.presentViewController(optionMenu, animated: true, completion: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+//
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

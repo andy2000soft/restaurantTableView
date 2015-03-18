@@ -23,6 +23,7 @@ class CustomTableViewCell: UITableViewCell {
         preferredIconImageView.image = UIImage(named: "Heart.png")
         preferredIconImageView.hidden = true
         super.awakeFromNib()
+        
 
     }
 
